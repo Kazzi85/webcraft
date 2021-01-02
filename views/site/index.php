@@ -15,7 +15,7 @@ $this->title = 'My Yii Application';
                     <div class="slider_text">
                         <h3>Привет, я Владимир <br>
                             <span>Web-разработчик</span></h3>
-                    <?= Html::a('Работы', ['site/works'], ['class' => 'boxed-btn3-line']) ?>
+                        <?= Html::a('Работы', ['site/works'], ['class' => 'boxed-btn3-line']) ?>
                     </div>
                 </div>
                 <div class="my_img d-none d-lg-block">
@@ -186,7 +186,7 @@ $this->title = 'My Yii Application';
             <div class="row">
                 <div class="col-lg-12">
                     <div class="more_works">
-                            <?= Html::a('Больше работ', ['site/works'], ['class' => 'boxed-btn3-line']) ?>
+                        <?= Html::a('Больше работ', ['site/works'], ['class' => 'boxed-btn3-line']) ?>
                     </div>
                 </div>
             </div>
