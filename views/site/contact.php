@@ -15,31 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <section class="contact-section section_padding">
     <div class="container">
       <div class="d-none d-sm-block mb-5 pb-4">
-        <div id="map" style="height: 480px;"></div>
-        <script>
-          function initMap() {
-            var uluru = {lat: -25.363, lng: 131.044};
-            var grayStyles = [
-              {
-                featureType: "all",
-                stylers: [
-                  { saturation: -90 },
-                  { lightness: 50 }
-                ]
-              },
-              {elementType: 'labels.text.fill', stylers: [{color: '#ccdee9'}]}
-            ];
-            var map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: -31.197, lng: 150.744},
-              zoom: 9,
-              styles: grayStyles,
-              scrollwheel:  false
-            });
-          }
-          
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
         
+      <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aada6e3add603300969df0efa9bf357bdf63fd793db879b4309c1c2cbef996151&amp;width=100%25&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
+
       </div>
 
 
