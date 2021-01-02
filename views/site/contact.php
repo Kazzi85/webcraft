@@ -8,61 +8,103 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Contact';
+$this->title = 'Контакты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
+<section class="contact-section section_padding">
+    <div class="container">
+      <div class="d-none d-sm-block mb-5 pb-4">
+        <div id="map" style="height: 480px;"></div>
+        <script>
+          function initMap() {
+            var uluru = {lat: -25.363, lng: 131.044};
+            var grayStyles = [
+              {
+                featureType: "all",
+                stylers: [
+                  { saturation: -90 },
+                  { lightness: 50 }
+                ]
+              },
+              {elementType: 'labels.text.fill', stylers: [{color: '#ccdee9'}]}
+            ];
+            var map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: -31.197, lng: 150.744},
+              zoom: 9,
+              styles: grayStyles,
+              scrollwheel:  false
+            });
+          }
+          
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
+        
+      </div>
 
-        <div class="alert alert-success">
-            Thank you for contacting us. We will respond to you as soon as possible.
+
+      <div class="row">
+        <div class="col-12">
+          <h2 class="contact-title">Задайте вопрос</h2>
         </div>
-
-        <p>
-            Note that if you turn on the Yii debugger, you should be able
-            to view the mail message on the mail panel of the debugger.
-            <?php if (Yii::$app->mailer->useFileTransport): ?>
-                Because the application is in development mode, the email is not sent but saved as
-                a file under <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>.
-                Please configure the <code>useFileTransport</code> property of the <code>mail</code>
-                application component to be false to enable email sending.
-            <?php endif; ?>
-        </p>
-
-    <?php else: ?>
-
-        <p>
-            If you have business inquiries or other questions, please fill out the following form to contact us.
-            Thank you.
-        </p>
-
-        <div class="row">
-            <div class="col-lg-5">
-
-                <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-
-                    <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
-
-                    <?= $form->field($model, 'email') ?>
-
-                    <?= $form->field($model, 'subject') ?>
-
-                    <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
-
-                    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                    ]) ?>
-
+        <div class="col-lg-8">
+            <?php $form = ActiveForm::begin(['id' => 'contactForm',
+                                             'class' => 'form-contact contact_form']); ?>   
+                <div class="row">
+                <div class="col-12">
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                        <?= $form->field($model, 'body')->textarea(['rows' => 9, 'cols' => '30', 'class' => 'form-control w-100', 'placeholder' => 'Введите текст писма'])->label(false) ?>    
                     </div>
-
-                <?php ActiveForm::end(); ?>
-
-            </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'name')->textInput(['class' => 'form-control',
+                                                                    'placeholder' => 'Введите имя'])->label(false) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'email')->textInput(['class' => 'form-control',
+                                                                    'placeholder' => 'Введите почтовый адрес'])->label(false) ?>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <?= $form->field($model, 'subject')->textInput(['class' => 'form-control',
+                                                                    'placeholder' => 'Введите тему писма'])->label(false) ?>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group mt-3">
+                    <?= Html::submitButton('Отправить сообщение', ['class' => 'button button-contactForm btn_4 boxed-btn', 'name' => 'contact-button']) ?>
+                    
+                </div>
+            <?php ActiveForm::end(); ?>
         </div>
-
-    <?php endif; ?>
-</div>
+        <div class="col-lg-4">
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-home"></i></span>
+            <div class="media-body">
+              <h3>Россия, Самара.</h3>
+              <p>Стара-загора, 195</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+            <div class="media-body">
+              <h3>+7 (960) 808-81-40</h3>
+              <p>С 9:00 до 16:00.</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-email"></i></span>
+            <div class="media-body">
+              <h3>Kazzi85@mail.ru</h3>
+              <p>Пишите в любое время!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================ contact section end ================= -->
