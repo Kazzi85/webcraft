@@ -65,6 +65,16 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionWorks()
+    {
+        return $this->render('works');
+    }
+
+    public function actionServices()
+    {
+        return $this->render('services');
+    }
+
     /**
      * Login action.
      *
@@ -124,6 +134,7 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
+        $this->layout = 'home';
         return $this->render('about');
     }
 }
